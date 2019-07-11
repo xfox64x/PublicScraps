@@ -39,7 +39,7 @@ if [ ! -f ~/git/ghidra.bin/Ghidra/Features/GhidraServer/yajsw-stable-12.12.zip ]
         cp ~/Downloads/yajsw-stable-12.12.zip ~/git/ghidra.bin/Ghidra/Features/GhidraServer/
 fi
 cd ~/git/ghidra
-gradle buildNatives_osx64
+gradle buildNatives_linux64
 gradle yajswDevUnpack
 gradle buildGhidra
 mkdir -p ~/git/ghidra_builds
