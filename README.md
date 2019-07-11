@@ -1,6 +1,3 @@
-# PublicScraps
-Scraps that can be public
-
 # Stuff
 
 ### build_ghidra.sh
