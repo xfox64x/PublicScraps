@@ -1,3 +1,6 @@
+# NkeyDecrypt.py
+# Some shitty "encryption" algo found somewhere.
+
 import base64
 
 Base64ObfuscatedValue = ''
