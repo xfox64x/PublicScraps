@@ -38,25 +38,32 @@ def get_segment(input_string, starting_index=0, ending_index=0, beginning_token=
             break
     return input_string[starting_index:ending_index][output_starting_index:output_ending_index]
     
-def search_stackoverflow(query):
+def search_stackoverflow(query, use_similar=False):
     query = query.lower().replace("stackoverflow.", "").replace("_", " ")
-    ans = requests.get(API_URL + "/search", {
-        "order": "desc",
-        "sort": "votes",
-        "tagged": "python",
-        "site": "stackoverflow",
-        "intitle": query,
-    }).json()
+    if use_similar:
+        ans = requests.get(API_URL + "/similar", {
+            "order": "desc",
+            "sort": "relevance",
+            "tagged": "python",
+            "site": "stackoverflow",
+            "title": query,
+        }).json()
+    else:
+        ans = requests.get(API_URL + "/search", {
+            "order": "desc",
+            "sort": "votes",
+            "tagged": "python",
+            "site": "stackoverflow",
+            "intitle": query,
+        }).json()
     time.sleep(0.04)
     if not ans["items"]:
         raise ImportError("Couldn't find any question matching `" + query + "`")
-    #return ans["items"][0]["link"]
     return ans
 
 def fetch_code(url):
     q = requests.get(url)
     time.sleep(0.04)
-    #return find_code_in_html(q.text)
     return q
 
 def get_upvote_count(x):
@@ -126,8 +133,8 @@ def parse_code_snippets(url, only_show_runable_code=True):
             print("{}\n\n".format(SEPARATOR_1))
 
 
-def divine_truths_from_the_ether(query, question_limit=0, only_show_runable_code=True):
-    questions = search_stackoverflow(query)["items"]
+def divine_truths_from_the_ether(query, question_limit=0, only_show_runable_code=True, use_similar=False):
+    questions = search_stackoverflow(query, use_similar)["items"]
     questions_checked = 0
     for question in questions:
         print("{}\n#THREAD: {}\n#TITLE: {}\n#SCORE: {}\n#VIEWS:{}\n".format(SEPARATOR_3, question["link"], question["title"], question["score"], question["view_count"]))        
@@ -137,4 +144,4 @@ def divine_truths_from_the_ether(query, question_limit=0, only_show_runable_code
             break      
 
 #parse_code_snippets("https://stackoverflow.com/questions/4183506/python-list-sort-in-descending-order")
-divine_truths_from_the_ether("quick sort", 5)
+divine_truths_from_the_ether("quick sort", 5, True, True)
