@@ -127,7 +127,7 @@ def parse_code_snippets(url, only_show_runable_code=True):
 
 
 def divine_truths_from_the_ether(query, question_limit=0, only_show_runable_code=True):
-    questions = search_stackoverflow("quick_sort")["items"]
+    questions = search_stackoverflow(query)["items"]
     questions_checked = 0
     for question in questions:
         print("{}\n#THREAD: {}\n#TITLE: {}\n#SCORE: {}\n#VIEWS:{}\n".format(SEPARATOR_3, question["link"], question["title"], question["score"], question["view_count"]))        
