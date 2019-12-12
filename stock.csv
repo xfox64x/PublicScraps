@@ -1,4 +1,4 @@
-Ticker,Code,Name,Sector,date
+symbol,Code,Name,Sector,date
 SPXL,SPXL,SPXL,Finance,2019-12-11
 LABU,LABU,LABU,Finance,2019-12-11
 LABD,LABD,LABD,Finance,2019-12-11
