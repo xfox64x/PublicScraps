@@ -1,1 +1,1 @@
-alert("XSS! Pwnd by jQuery version: ");
+alert("Hello! I am an alert box!!");
