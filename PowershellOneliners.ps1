@@ -37,6 +37,9 @@ systeminfo
 # Get quick list of patches:
 wmic qfe
 
+# Get Windows Defender Status:
+Get-MpComputerStatus
+
 # Get interactive users with sessions:
 query user
 
