@@ -185,7 +185,7 @@ function Get-OwoText {
     $InputString = [Regex]::new("(?<nValue>[nN])(?<vowel>[aeiouAEIOU])").Replace($InputString, $VowelMatchEvaluator)
 
     if($Cocaine -eq $true) {
-        $InputString = [Regex]::new("(?<vowelString>([AEIOUY])\1{2,})", [System.Text.RegularExpressions.RegexOptions]::IgnoreCase).Replace($InputString, $RepeatedVowelEvaluator)
+        $InputString = [Regex]::new("(?<vowelString>[AEIOUY]{2,})", [System.Text.RegularExpressions.RegexOptions]::IgnoreCase).Replace($InputString, $RepeatedVowelEvaluator)
     }
 
     if($Confused -eq $true) {
@@ -206,4 +206,26 @@ function Get-Cancer {
     return (Get-RetardText -InputString (Get-OwoText -InputString $InputString -Furry -Cocaine -Confused -Flavor))
 }
 
-Get-Cancer -InputString "Four score and seven years ago our fathers brought forth on this continent, a new nation, conceived in Liberty, and dedicated to the proposition that all men are created equal."
+
+# Examples:
+
+Get-Cancer -InputString "Four score and seven years ago our fathers brought forth on this continent, a new nation, conceived in Liberty, and dedicated to the proposition that all men are created equal." # Abraham Lincoln
+# FoUw sCoWe aWnD SeVeN YeAwS AgOw oUw fAtHeWs bWoUgHt fOwTh oN ThIs cOnTiNyEnT, a nYeW NyAtIoN, cOnCeIvEd iN WiBeWtY, aWnD DeDiCaTeD TuWu tHe pWoPoSiTiOn tHaT Aw mEn aWe cWeAtEd eQuAw..... (・Ω´・) *RuBbIeS MoRe oN YoUr bUlGy wOlGy*
+
+Get-OwoText -InputString "Did I ever tell you what the definition of insanity is? Insanity is doing the exact... same fucking thing... over and over again expecting... shit to change... That. Is. Crazy." # Michael Mando, Far Cry 3
+# Did I evew tew you what the definyition of insanyity is? owo Insanyity is doing the exact... same fucking thing... ovew and ovew again expecting... shit to change... That. Is. Cwazy. >w<
+
+Get-OwoText -Confused -InputString "My country 'tis of thee, sweet land of liberty, of thee I sing. Land where my father's died, land of the Pilgrim's pride, from every mountainside, let freedom ring!" # As quoted by Martin Luther King Jr.
+# My countwy 'tis of thee, sweet wand of wibewty, of thee I sing.... uwu Wand whewe my fathew's died, wand of the Piwgwim's pwide, fwom evewy mountainside, wet fweedom wing!!1!!!?!! OvO
+
+Get-OwoText -Cocaine -InputString "I taste a liquor never brewed - From tankards scooped in pearl - Not all the Frankfort berries yield such an alcohol!" # Emily Dickinson
+# I taste a wiqUUuUUuuUUUuw nYYYYYyYYYYYYvew bwewed - Fwom tankawds scoOOOOOOOOooped in pEEEEEeEww - NYYYYYYYYYYYYt aw the Fwankfowt bewwiIIs yyYyYyYYYYYwd such an awcohow! XD
+
+Get-OwoText -Flavor -InputString "Wealth is the product of man's capacity to think." # Ayn Rand
+# Weawth is the pwoduct of man's capacity to think. >w< *squirms*
+
+Get-OwoText -Furry -InputString "The people who cast the votes don't decide an election, the people who count the votes do." # Joseph Stalin
+# The peopwe who cast the voties don't decide an ewection, the peopwe who count the voties do. 0w0
+
+Get-RetardText -InputString "Great minds discuss ideas; average minds discuss events; small minds discuss people." # Eleanor Roosevelt
+# GrEaT MiNdS DiScUsS IdEaS; aVeRaGe mInDs dIsCuSs eVeNtS; sMaLl mInDs dIsCuSs pEoPlE.
