@@ -168,6 +168,9 @@ Get-ChildItem -Path .\ -Filter *.csv -File -Recurse | Sort LastWriteTimeUtc -Des
 Get-ChildItem "<path_to_folder>" -Recurse -Force | Select-String -Pattern "password", "pwd", "passwd" | Add-Content "C:\PasswordGrep.txt" -Force
 Get-ChildItem "c:\windows\system32\*.txt" -Recurse -Force | Select-String -Pattern "Microsoft", "windows" | Add-Content TestGrep.txt -Force
 
+# Get list of files by extension, then scan files for strings: 
+$FilesWithExtension = @(); Get-ChildItem -Path C:\ -Recurse -Filter *.ps1 -File | %{ $FilesWithExtension += $_.FullName }; $FilesWithExtensionAndText = @(); $FilesWithExtension | %{ if(((Get-ChildItem $_) | Select-String -Pattern "XML", ".xml").Count -gt 0) { $FilesWithExtensionAndText += $_ } }
+
 # Check a file's hash
 (Get-FileHash "<path_to_file>" -Algorithm MD5).Hash.ToLower() -eq ("0079e0ad38bf97d019776bb6a6409359").Trim().ToLower()
 
